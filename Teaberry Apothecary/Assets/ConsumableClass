@@ -1,0 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class ConsumableClass : ItemClass {
+    [Header("Consumable")]
+    public override ItemClass GetItem() { return this; }
+    public override ToolClass GetTool() { return null; }
+    public abstract ConsumableClass GetConsumable() { return this; }
+
+}
