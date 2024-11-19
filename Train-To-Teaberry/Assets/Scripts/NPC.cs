@@ -28,11 +28,12 @@ public class NPC : MonoBehaviour
                 Debug.Log("Displaying dialogue panel");
             }
         }
-        if(dialogueText.text == dialogue[index]) {
+        if (dialogueText.text == dialogue[index])
+        {
             contButton.SetActive(true);
             Debug.Log("button not clicked");
         }
-        
+
     }
 
     IEnumerator Typing() {
