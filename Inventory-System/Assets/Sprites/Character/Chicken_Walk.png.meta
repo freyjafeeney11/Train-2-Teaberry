@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 6443334a991314e1981a5fef09b41618
+guid: 79a4bdb01d7e444e0adc8b20d7334e21
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9043805335668578125
-    second: penelope front_0
+      213: -2562012858001844379
+    second: Chicken_Walk_0
+  - first:
+      213: 3393423367135678318
+    second: Chicken_Walk_1
+  - first:
+      213: 3878880852419515856
+    second: Chicken_Walk_2
+  - first:
+      213: -6558183364867272590
+    second: Chicken_Walk_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: penelope front_0
+      name: Chicken_Walk_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 0
-        width: 18
-        height: 32
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d47de42690d028d70800000000000000
-      internalID: 9043805335668578125
+      spriteID: 56711d831e6e17cd0800000000000000
+      internalID: -2562012858001844379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken_Walk_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6fc1a2c29cd71f20800000000000000
+      internalID: 3393423367135678318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken_Walk_2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d59786859d84d530800000000000000
+      internalID: 3878880852419515856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken_Walk_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 270d535f9f6acf4a0800000000000000
+      internalID: -6558183364867272590
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c9e456d638018451eaf1417808b4f4b3
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      penelope front_0: 9043805335668578125
+      Chicken_Walk_0: -2562012858001844379
+      Chicken_Walk_1: 3393423367135678318
+      Chicken_Walk_2: 3878880852419515856
+      Chicken_Walk_3: -6558183364867272590
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

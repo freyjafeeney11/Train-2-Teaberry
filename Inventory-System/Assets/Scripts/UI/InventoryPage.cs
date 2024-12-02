@@ -9,18 +9,25 @@ public class InventoryPage : MonoBehaviour
 
     [SerializeField]
     private RectTransform contentPanel;
+
     [SerializeField]
     private InventoryDescription itemDescription;
 
+    [SerializeField]
+    private MouseFollower mouseFollower;
+
     List<InventoryItem> listofUIItems = new List<InventoryItem>();
 
-    public Sprite image;
+    public Sprite image, image2;
     public int quantity;
     public string title, description;
+
+    private int currentlyDraggedItemIndex = -1;
 
     private void Awake()
     {
         Hide();
+        mouseFollower.Toggle(false);
         itemDescription.ResetDescription();
     }
     public void InitializeInventoryUI(int inventorysize)
@@ -44,7 +51,9 @@ public class InventoryPage : MonoBehaviour
     {
         gameObject.SetActive(true);
         itemDescription.ResetDescription();
+
         listofUIItems[0].SetData(image, quantity);
+        listofUIItems[1].SetData(image2, quantity);
     }
 
     public void Hide()
@@ -52,24 +61,41 @@ public class InventoryPage : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void HandleItemSelection(InventoryItem obj)
+    public void HandleItemSelection(InventoryItem inventoryItemUI)
     {
         itemDescription.SetDescription(image, title, description);
         listofUIItems[0].Select();
     }
-    public void HandleBeginDrag(InventoryItem obj)
+    public void HandleBeginDrag(InventoryItem inventoryItemUI)
     {
-        
+        int index = listofUIItems.IndexOf(inventoryItemUI);
+        if (index == -1)
+            return;
+        currentlyDraggedItemIndex = index;
+
+        mouseFollower.Toggle(true);
+        mouseFollower.SetData(index == 0 ? image : image2, quantity);
     }
-    public void HandleSwap(InventoryItem obj)
+    public void HandleSwap(InventoryItem inventoryItemUI)
     {
-        
+        int index = listofUIItems.IndexOf(inventoryItemUI);
+        if (index == -1)
+        {
+            mouseFollower.Toggle(false);
+            currentlyDraggedItemIndex = -1;
+            return;
+        }
+        listofUIItems[currentlyDraggedItemIndex].SetData(index == 0 ? image : image2, quantity);
+        listofUIItems[index].SetData(currentlyDraggedItemIndex == 0 ? image : image2, quantity);
+        mouseFollower.Toggle(false);
+        currentlyDraggedItemIndex = -1;
+
     }
-    public void HandleEndDrag(InventoryItem obj)
+    public void HandleEndDrag(InventoryItem inventoryItemUI)
     {
-        
+        mouseFollower.Toggle(false);
     }
-    public void HandleShowItemActions(InventoryItem obj)
+    public void HandleShowItemActions(InventoryItem inventoryItemUI)
     {
         
     }

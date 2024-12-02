@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6443334a991314e1981a5fef09b41618
+guid: 22a63eca42c184e8598e80a2e0a43139
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9043805335668578125
-    second: penelope front_0
+      213: -7796864351666666146
+    second: Human_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: penelope front_0
+      name: Human_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 18
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d47de42690d028d70800000000000000
-      internalID: 9043805335668578125
+      spriteID: e5580058e29fbc390800000000000000
+      internalID: -7796864351666666146
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      penelope front_0: 9043805335668578125
+      Human_0: -7796864351666666146
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
