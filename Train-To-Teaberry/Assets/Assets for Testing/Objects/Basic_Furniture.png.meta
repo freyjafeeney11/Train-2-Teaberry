@@ -121,7 +121,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -159,7 +159,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -847,7 +847,36 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Basic_Furniture_0: 4816601885579624766
+      Basic_Furniture_1: -4468020966496558839
+      Basic_Furniture_10: -358496273364812296
+      Basic_Furniture_11: 7836687586425024582
+      Basic_Furniture_12: -6178358429093569155
+      Basic_Furniture_13: -2233119960623464545
+      Basic_Furniture_14: -8641358660050861904
+      Basic_Furniture_15: -1865263309553341333
+      Basic_Furniture_16: 6609832211905053478
+      Basic_Furniture_17: -3886059868903961173
+      Basic_Furniture_18: 5420504499394380449
+      Basic_Furniture_19: -6019653054814042591
+      Basic_Furniture_2: 8970863486524723379
+      Basic_Furniture_20: -450519480971497223
+      Basic_Furniture_21: -6376348432289402992
+      Basic_Furniture_22: 8699133597345416721
+      Basic_Furniture_23: 8530941504646180341
+      Basic_Furniture_24: 5937207809507436031
+      Basic_Furniture_25: -5427211908867942942
+      Basic_Furniture_26: -8402132690208145846
+      Basic_Furniture_27: -4815365765911829455
+      Basic_Furniture_28: 2779122611121063561
+      Basic_Furniture_3: -4464683919757446399
+      Basic_Furniture_4: 7829936474952215996
+      Basic_Furniture_5: -7241263986709402041
+      Basic_Furniture_6: 2561671524415346828
+      Basic_Furniture_7: -909644366075567622
+      Basic_Furniture_8: -1772519858020832693
+      Basic_Furniture_9: -2729260742163401794
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
