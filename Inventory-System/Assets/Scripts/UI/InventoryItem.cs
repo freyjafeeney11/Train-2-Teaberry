@@ -73,6 +73,5 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler,
     }
     public void OnDrag(PointerEventData eventData)
     {
-    
     }
 }

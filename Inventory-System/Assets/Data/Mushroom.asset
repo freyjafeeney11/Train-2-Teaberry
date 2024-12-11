@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c8ac26defa8485d9951c8827887cd6, type: 3}
+  m_Name: Mushroom
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <Name>k__BackingField: Mushroom
+  <Description>k__BackingField: A poisonous red mushroom with white spots. Commonly
+    found in shaded forests near mossy tree roots or decaying logs.
+  <ItemImage>k__BackingField: {fileID: 4315506946141470425, guid: cd50d320e57e948228c891405805b739, type: 3}
