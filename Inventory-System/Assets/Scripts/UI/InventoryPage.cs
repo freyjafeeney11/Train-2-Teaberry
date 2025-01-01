@@ -129,5 +129,14 @@ namespace Inventory.UI
             gameObject.SetActive(false);
             ResetDraggedItem();
         }
+
+        internal void ResetAllItems()
+        {
+            foreach (var item in listofUIItems)
+            {
+                item.ResetData();
+                item.Deselect();
+            }
+        }
     }
 }

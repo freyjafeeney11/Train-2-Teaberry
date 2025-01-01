@@ -1069,7 +1069,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 8771539095055453565}
-  inventorySize: 90
+  inventoryData: {fileID: 11400000, guid: 5d2a178210e174a7c88abca199dcc360, type: 2}
+  initialItems:
+  - quantity: 3
+    item: {fileID: 11400000, guid: cdc37bae3825044309fd4d082eba9d23, type: 2}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 209352537b3854fabaa6d4603b952949, type: 2}
+  - quantity: 0
+    item: {fileID: 0}
+  - quantity: 4
+    item: {fileID: 11400000, guid: cdc37bae3825044309fd4d082eba9d23, type: 2}
 --- !u!1 &1220746999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1491,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5088916219641006464, guid: ed5f9d31279e74cb5b6d2ec46a06e2d1, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088916219641006464, guid: ed5f9d31279e74cb5b6d2ec46a06e2d1, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5088916219641006464, guid: ed5f9d31279e74cb5b6d2ec46a06e2d1, type: 3}
