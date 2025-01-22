@@ -1,30 +1,39 @@
 using UnityEngine;
-using UnityEngine.UI;  // Needed for UI Button
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class DropHandler : MonoBehaviour, IDropHandler
 {
     private List<string> ingredients = new List<string>();
-    public RecipeBook recipeBook;  // Reference to the RecipeBook ScriptableObject
-    public GameObject potionDisplay;  // Reference to the GameObject displaying the potion name and sprite
-    public Image potionImage;         // Reference to the UI Image component where the sprite will appear
-    public Text potionText;           // Reference to the UI Text component where the potion name will appea
-    public Button brewButton;  // Reference to the Brew Button
+    private List<GameObject> ingredientObjects = new List<GameObject>();  
+
+    public RecipeBook recipeBook;  
+    public GameObject potionDisplay; 
+    public Image potionImage;        
+    public Text potionText;           
+    public Button brewButton;  
 
     private void Start()
     {
-        // Ensure the brewButton is assigned in the inspector
         if (brewButton != null)
         {
-            brewButton.onClick.AddListener(BrewPotion);  // Listen for button click
+            brewButton.onClick.AddListener(BrewPotion);
         }
         else
         {
             Debug.LogError("Brew Button not assigned!");
         }
 
-        // Ensure the cauldron has a collider
+        if (potionDisplay != null)
+        {
+            potionDisplay.GetComponent<Button>().onClick.AddListener(ClosePotionDisplay);
+        }
+        else
+        {
+            Debug.LogError("Potion Display not assigned!");
+        }
+
         if (GetComponent<Collider2D>() == null && GetComponent<Collider>() == null)
         {
             Debug.LogError("Cauldron does not have a Collider! Please add one.");
@@ -33,28 +42,29 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
     public void BrewPotion()
     {
+        Debug.Log("Ingredients in cauldron: " + string.Join(", ", ingredients));
 
-    // Log the ingredients in the cauldron
-    Debug.Log("Ingredients in cauldron: " + string.Join(", ", ingredients));  // Log the ingredients list
-
-
-        // Check if the ingredients match any recipe
         string brewedPotion = recipeBook.CheckRecipe(ingredients);
 
         if (!string.IsNullOrEmpty(brewedPotion))
         {
             Debug.Log("You brewed: " + brewedPotion);
-            ingredients.Clear();  // Clear ingredients after a successful brew
 
-            // Show the potion screen with the sprite and name
-            potionDisplay.SetActive(true);  // Activate the potion display screen
+            // Remove ingredient GameObjects from the scene
+            ClearIngredientObjects();
 
-            // Find and set the correct sprite for the brewed potion
+            // Clear ingredient names from the list
+            ingredients.Clear();  
+
+            // Show the potion display
+            potionDisplay.SetActive(true);
+
+            // Set the correct sprite for the brewed potion
             Sprite potionSprite = GetPotionSprite(brewedPotion);
             potionImage.sprite = potionSprite;
 
-            // Display the potion name on the screen
-            potionText.text = "Potion: " + brewedPotion;
+            // Display the potion name
+            potionText.text = "You brewed a " + brewedPotion + "!";
         }
         else
         {
@@ -62,43 +72,65 @@ public class DropHandler : MonoBehaviour, IDropHandler
         }
     }
 
+    private void ClearIngredientObjects()
+    {
+        foreach (GameObject ingredient in ingredientObjects)
+        {
+            if (ingredient != null)
+            {
+                Destroy(ingredient);
+            }
+        }
+        ingredientObjects.Clear();  
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        GameObject droppedObject = eventData.pointerDrag;
+
+        if (droppedObject != null)
+        {
+            Ingredient ingredient = droppedObject.GetComponent<Ingredient>();
+
+            if (ingredient != null)
+            {
+                // Temporarily store ingredient but don't add it yet
+                droppedObject.transform.SetParent(transform); // Attach it to the cauldron
+            }
+            else
+            {
+                Debug.LogError("Dropped object does not have an Ingredient component.");
+            }
+        }
+    }
+
+    // Check if an ingredient actually enters the cauldron before adding it to the list
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Ingredient ingredient = other.GetComponent<Ingredient>();
+        if (ingredient != null && !ingredients.Contains(ingredient.ingredientName))
+        {
+            ingredients.Add(ingredient.ingredientName);
+            ingredientObjects.Add(other.gameObject);
+            Debug.Log("Added ingredient: " + ingredient.ingredientName);
+        }
+    }
+
     private Sprite GetPotionSprite(string potionName)
     {
-        // Here, you can return different sprites based on the potion name
-        // Example: you can use a switch-case, dictionary, or other logic to find the correct sprite
-
         switch (potionName)
         {
             case "Fart Potion":
-                return Resources.Load<Sprite>("Fart Potion");  // Load the sprite from the Resources folder
+                return Resources.Load<Sprite>("Fart Potion");  
             case "Health Potion":
                 return Resources.Load<Sprite>("Health Potion");
-            // Add more cases as needed
             default:
-                return null;  // Return null if no matching potion is found
+                return null;  
         }
     }
-public void OnDrop(PointerEventData eventData)
-{
-    GameObject droppedObject = eventData.pointerDrag;
 
-    // Check if the dropped object is valid
-    if (droppedObject != null)
+    private void ClosePotionDisplay()
     {
-        // Try to get the Ingredient component from the dropped object
-        Ingredient ingredient = droppedObject.GetComponent<Ingredient>();
-
-        if (ingredient != null)
-        {
-            // Add the ingredient name to the ingredients list
-            ingredients.Add(ingredient.ingredientName);  // Assuming 'ingredientName' is a string in the Ingredient script
-            Debug.Log("Added ingredient: " + ingredient.ingredientName);
-        }
-        else
-        {
-            Debug.LogError("Dropped object does not have an Ingredient component.");
-        }
+        potionDisplay.SetActive(false);
     }
-}
-
 }
