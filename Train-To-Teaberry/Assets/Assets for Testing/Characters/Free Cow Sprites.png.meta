@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Free Cow Sprites_0: -5922754114360663000
+      Free Cow Sprites_1: -1589296601377610331
+      Free Cow Sprites_2: 1201215636998452967
+      Free Cow Sprites_3: 8911921523293518287
+      Free Cow Sprites_4: -2414581210190814732
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

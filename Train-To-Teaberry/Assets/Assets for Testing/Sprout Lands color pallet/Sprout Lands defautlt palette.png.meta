@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sprout Lands defautlt palette_0: -8809918075255261782
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
