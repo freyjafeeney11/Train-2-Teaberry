@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      shaggy_0: -1421393746034963484
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

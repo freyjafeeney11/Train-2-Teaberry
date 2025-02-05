@@ -397,7 +397,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cafe_furniture_0: 524277441192503178
+      cafe_furniture_1: 7820915181424112750
+      cafe_furniture_10: -4824100391397611448
+      cafe_furniture_2: 2529428881298825548
+      cafe_furniture_3: 8700096336444270033
+      cafe_furniture_4: 1018947096717372674
+      cafe_furniture_5: 7473559012824087709
+      cafe_furniture_6: 1369559535348778163
+      cafe_furniture_7: 7619239970197655412
+      cafe_furniture_8: -2610917845187300009
+      cafe_furniture_9: 5925854433180956825
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2beecf3f1257c451c9b9979d0c340a4d
+guid: 50152d6d1e8be4897a6f65c4d1b2c785
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4717781618098924079
-    second: little_ping-pong_bats_glowing_0
+      213: 8417420941954122440
+    second: Slot_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: little_ping-pong_bats_glowing_0
+      name: Slot_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 76
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d5985d3d92178eb0800000000000000
-      internalID: -4717781618098924079
+      spriteID: 8c20c12dfbfa0d470800000000000000
+      internalID: 8417420941954122440
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      little_ping-pong_bats_glowing_0: -4717781618098924079
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

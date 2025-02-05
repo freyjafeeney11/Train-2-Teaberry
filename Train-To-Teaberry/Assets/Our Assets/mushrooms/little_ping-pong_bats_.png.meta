@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      little_ping-pong_bats__0: -5776608023089775088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

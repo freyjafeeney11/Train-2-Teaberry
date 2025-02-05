@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      indigo_milk_cap___0: 2524560076252073357
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
