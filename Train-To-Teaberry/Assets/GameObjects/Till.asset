@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f8a73bd357aea439dafcbe37abe9f2, type: 3}
+  m_Name: Till
+  m_EditorClassIdentifier: 
+  stageName: Till
+  stageSprite: {fileID: -3216058061343679437, guid: f80e6b5af8a229043845c4b3a273437e, type: 3}
+  tilePrefab: {fileID: 11400000, guid: 243759541fd3cef49848507894ca62a0, type: 2}

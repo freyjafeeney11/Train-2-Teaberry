@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Free Chicken Sprites_0: 8560451000399327191
+      Free Chicken Sprites_1: -172105496523427829
+      Free Chicken Sprites_2: -1036979789468306671
+      Free Chicken Sprites_3: -7729539223606550471
+      Free Chicken Sprites_4: 6835891653889965918
+      Free Chicken Sprites_5: -853786803854351760
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

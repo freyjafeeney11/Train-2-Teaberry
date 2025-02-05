@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Basic_tools_and_meterials_0: -6987332668960274312
+      Basic_tools_and_meterials_1: -7773870562576252253
+      Basic_tools_and_meterials_2: 5827638716017627413
+      Basic_tools_and_meterials_3: 6239689603595155940
+      Basic_tools_and_meterials_4: 716657169334937913
+      Basic_tools_and_meterials_5: 6134250156721728216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
