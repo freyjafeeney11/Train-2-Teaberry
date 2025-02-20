@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0e88d3526bb754b8eaf93ee984092538
+guid: 985edcbf633944a6fa5cdfcfc14e7538
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7917559719301742885
-    second: round_tree_0
+      213: 8684031030006482024
+    second: ANNOYINGCOPERATE GUY (W_ Breifcase)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: round_tree_0
+      name: ANNOYINGCOPERATE GUY (W_ Breifcase)_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 64
-        height: 70
+        width: 90
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bdef313626d2f1290800000000000000
-      internalID: -7917559719301742885
+      spriteID: 864810a3630e38870800000000000000
+      internalID: 8684031030006482024
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      round_tree_0: -7917559719301742885
+      ANNOYINGCOPERATE GUY (W_ Breifcase)_0: 8684031030006482024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
