@@ -1577,7 +1577,7 @@ GameObject:
   - component: {fileID: 768513301}
   - component: {fileID: 768513300}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: Alchemy EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2640,7 +2640,7 @@ GameObject:
   - component: {fileID: 2144437593}
   - component: {fileID: 2144437592}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Alchemy Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
