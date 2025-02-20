@@ -7,7 +7,6 @@ using UnityEngine.Rendering.Universal;
 
 public class DayNightScript : MonoBehaviour
 {
-    public Text timeDisplay; // Display Time
     public Volume ppv; // Post Processing Volume
     public GameObject[] lights; // All the lights we want on when it's dark
 
@@ -46,7 +45,6 @@ public class DayNightScript : MonoBehaviour
 
         // Control the day-night cycle whenever the time changes
         ControlPPV();
-        DisplayTime();
     }
 
     // Control the post-processing and lights based on time of day
@@ -127,11 +125,5 @@ public class DayNightScript : MonoBehaviour
         {
             return (24 - hour + 6) * 60 - minutes; // Wrap around midnight if past dawn
         }
-    }
-
-    // Update the UI with the current time and day
-    public void DisplayTime()
-    {
-        timeDisplay.text = string.Format("Time: {0:00}:{1:00} - Day: {2}", hour, minutes, day); // Display time in hh:mm format and day
     }
 }
