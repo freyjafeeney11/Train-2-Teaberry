@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5dbd84ae22af1443f81befc9f653732c
+guid: 37b7484efbcb04f60af6f5d73cf70a04
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8950853401993563300
-    second: Time_Board_0
+      213: -5081153284031078973
+    second: wise_portrait_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Time_Board_0
+      name: wise_portrait_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 4
-        width: 196
-        height: 63
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c53b399214e28c380800000000000000
-      internalID: -8950853401993563300
+      spriteID: 3cd9400620e1c79b0800000000000000
+      internalID: -5081153284031078973
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 15a7bebd0d7c64adb9e8fb58763254c0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Time_Board_0: -8950853401993563300
+      wise_portrait_0: -5081153284031078973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
