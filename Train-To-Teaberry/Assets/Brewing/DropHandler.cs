@@ -14,6 +14,9 @@ public class DropHandler : MonoBehaviour, IDropHandler
     public Text potionText;           
     public Button brewButton;  
 
+    // Reference to InventoryController
+    public InventoryController inventoryController;
+
     private void Start()
     {
         if (brewButton != null)
@@ -65,6 +68,18 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
             // Display the potion name
             potionText.text = "You brewed a " + brewedPotion + "!";
+
+            // Now add the brewed potion to the inventory
+            GameObject potionPrefab = GetPotionPrefab(brewedPotion);
+            if (potionPrefab != null)
+            {
+                Debug.Log("Prefab for brewed potion found: " + potionPrefab.name);
+                inventoryController.AddItem(potionPrefab); // Add potion to inventory
+            }
+            else
+            {
+                Debug.LogError("Prefab for brewed potion not found.");
+            }
         }
         else
         {
@@ -126,6 +141,21 @@ public class DropHandler : MonoBehaviour, IDropHandler
                 return Resources.Load<Sprite>("Health Potion");
             default:
                 return null;  
+        }
+    }
+
+    private GameObject GetPotionPrefab(string potionName)
+    {
+        switch (potionName)
+        {
+            case "Fart Potion":
+                Debug.Log("Looking for Fart Potion prefab...");
+                return Resources.Load<GameObject>("PotionPrefabs/FartPotionPrefab");  // Replace with actual path to prefab
+            case "Health Potion":
+                Debug.Log("Looking for Health Potion prefab...");
+                return Resources.Load<GameObject>("PotionPrefabs/HealthPotionPrefab");
+            default:
+                return null;
         }
     }
 

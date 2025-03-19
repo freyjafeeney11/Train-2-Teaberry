@@ -87,10 +87,6 @@ public class DayNightScript : MonoBehaviour
                 activateLights = false;
             }
         }
-
-        // Debug: Print how long until dusk or dawn
-        Debug.Log($"Minutes until Dusk: {minutesUntilDusk} minutes.");
-        Debug.Log($"Minutes until Dawn: {minutesUntilDawn} minutes.");
     }
 
     // Get the time difference until dusk (9 PM)
