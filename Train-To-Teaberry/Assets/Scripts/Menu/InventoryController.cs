@@ -26,20 +26,19 @@ public class InventoryController : MonoBehaviour
     }
 
     // Check if an item is already in the inventory by name
-    public bool HasItem(string itemName)
+public bool HasItem(string itemName)
+{
+    foreach (Slot slot in slots)
     {
-        foreach (Slot slot in slots)
+        if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemName))
         {
-            // Ensure currentItem is not null before checking its name
-            if (slot.currentItem != null && slot.currentItem.name == itemName)
-            {
-                Debug.Log($"Item {itemName} found in inventory!");
-                return true;
-            }
+            Debug.Log($"Item {itemName} found in inventory!");
+            return true;
         }
-        Debug.Log($"Item {itemName} not found in inventory!");
-        return false;
     }
+    Debug.Log($"Item {itemName} not found in inventory!");
+    return false;
+}
 
     // Add an item to the first available slot in the inventory
     public void AddItem(GameObject itemPrefab)
