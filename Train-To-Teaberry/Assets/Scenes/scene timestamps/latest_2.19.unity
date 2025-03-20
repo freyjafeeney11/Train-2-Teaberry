@@ -457634,7 +457634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.data[1].potionName
-      value: Fart
+      value: FartPotionPrefab(Clone)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
