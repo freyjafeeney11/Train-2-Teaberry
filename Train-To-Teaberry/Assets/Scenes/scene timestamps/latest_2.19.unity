@@ -3547,58 +3547,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5722734373029840961, guid: e7af5e86377984221841fce48036eb54, type: 3}
   m_PrefabInstance: {fileID: 330578102}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &331238065
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 331238066}
-  - component: {fileID: 331238067}
-  m_Layer: 5
-  m_Name: Ingredient Shelf UI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &331238066
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331238065}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.111875, y: 1.111875, z: 1.111875}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 750, y: 317}
-  m_SizeDelta: {x: 242.8829, y: 281.4131}
-  m_Pivot: {x: 0.50000006, y: 0.5}
---- !u!114 &331238067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331238065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85d29c3076f2a40a5bef7196252560e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 513287539}
-  slotPrefab: {fileID: 6753824947282845259, guid: 5c8ab4c097bf8439ebb7955ba326f028, type: 3}
-  slotCount: 5
-  itemPrefabs: []
 --- !u!1 &338500087
 GameObject:
   m_ObjectHideFlags: 0
@@ -4007,7 +3955,7 @@ GameObject:
   - component: {fileID: 513287542}
   - component: {fileID: 513287541}
   m_Layer: 5
-  m_Name: InventoryPanel
+  m_Name: BrewInventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4029,8 +3977,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 235.84288, y: 39.2286}
-  m_SizeDelta: {x: 754.9308, y: 653.2111}
+  m_AnchoredPosition: {x: 141.59, y: 74.672}
+  m_SizeDelta: {x: 1240.4, y: 449.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513287541
 MonoBehaviour:
@@ -458065,9 +458013,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9216419226527562419, guid: 6ed0a3b76a2f7498baf72dba17f99586, type: 3}
+      propertyPath: slotCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216419226527562419, guid: 6ed0a3b76a2f7498baf72dba17f99586, type: 3}
       propertyPath: inventoryPanel
       value: 
       objectReference: {fileID: 1538332424}
+    - target: {fileID: 9216419226527562419, guid: 6ed0a3b76a2f7498baf72dba17f99586, type: 3}
+      propertyPath: brewIngredientPanel
+      value: 
+      objectReference: {fileID: 513287539}
+    - target: {fileID: 9216419226527562419, guid: 6ed0a3b76a2f7498baf72dba17f99586, type: 3}
+      propertyPath: ingredientSlotPrefab
+      value: 
+      objectReference: {fileID: 6753824947282845259, guid: 5c8ab4c097bf8439ebb7955ba326f028, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -458091,7 +458051,6 @@ SceneRoots:
   - {fileID: 163130025555396906}
   - {fileID: 2297416582025654046}
   - {fileID: 1509264127}
-  - {fileID: 331238066}
   - {fileID: 1996157021}
   - {fileID: 1991325590}
   - {fileID: 1716272050}

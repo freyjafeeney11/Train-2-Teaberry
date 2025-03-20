@@ -3,78 +3,106 @@ using System.Collections.Generic;
 
 public class InventoryController : MonoBehaviour
 {
-    public GameObject inventoryPanel; // The panel where inventory slots will be displayed
-    public GameObject slotPrefab; // The prefab used for each inventory slot
-    public int slotCount = 10; // Set a fixed number of slots for the inventory
-    public GameObject[] itemPrefabs; // Predefined items (e.g., potions) to be placed in inventory
-    private List<Slot> slots = new List<Slot>(); // List to store references to each slot
+    public GameObject inventoryPanel; // The panel for inventory slots
+    public GameObject brewIngredientPanel; // The panel for brewing ingredient slots
+    public GameObject slotPrefab; // The prefab for inventory slots
+    public GameObject ingredientSlotPrefab; // The prefab for ingredient slots
+    public int slotCount = 10; // Number of slots in inventory
+    public GameObject[] itemPrefabs; // Items available at the start
+    private List<Slot> slots = new List<Slot>(); // Inventory slots
+    private List<Slot> ingredientSlots = new List<Slot>(); // Brewing ingredient slots
 
     void Start()
     {
-        // Create the inventory slots based on the fixed `slotCount`
+        // Create the inventory slots
         for (int i = 0; i < slotCount; i++)
         {
             Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
-            slots.Add(slot); // Store the slot reference
+            slots.Add(slot);
+        }
 
-            if (i < itemPrefabs.Length)
-            {
-                // Add starting items (only as long as itemPrefabs has entries)
-                // AddItem(Instantiate(itemPrefabs[i]));
-            }
+        // Create the brewing ingredient slots
+        for (int i = 0; i < slotCount; i++)
+        {
+            Slot ingredientSlot = Instantiate(ingredientSlotPrefab, brewIngredientPanel.transform).GetComponent<Slot>();
+            ingredientSlots.Add(ingredientSlot);
         }
     }
 
-    // Check if an item with a matching starting name is in the inventory
-    public bool HasItem(string itemNamePrefix)
+    // Check if an item with a matching name prefix is in either inventory
+    public bool HasItem(string itemNamePrefix, bool checkIngredients = false)
     {
-        foreach (Slot slot in slots)
+        List<Slot> checkList = checkIngredients ? ingredientSlots : slots;
+        foreach (Slot slot in checkList)
         {
             if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemNamePrefix))
             {
-                Debug.Log($"Item starting with '{itemNamePrefix}' found in inventory!");
+                Debug.Log($"Item starting with '{itemNamePrefix}' found in {(checkIngredients ? "brew ingredients" : "inventory")}!");
                 return true;
             }
         }
-        Debug.Log($"Item starting with '{itemNamePrefix}' not found in inventory!");
+        Debug.Log($"Item starting with '{itemNamePrefix}' not found in {(checkIngredients ? "brew ingredients" : "inventory")}!");
         return false;
     }
 
-    // Add an item to the first available slot in the inventory
-    public void AddItem(GameObject itemPrefab)
-    {
-        // Find an empty slot and place the item there
-        foreach (Slot slot in slots)
-        {
-            if (slot.currentItem == null) // Look for an empty slot
-            {
-                GameObject item = Instantiate(itemPrefab, slot.transform); // Instantiate the item
-                item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; // Position the item in the slot
-                slot.currentItem = item; // Set the current item for this slot
-                Debug.Log($"Added {item.name} to inventory!");
-                return; // Exit after adding the item
-            }
-        }
+    // Add an item to either inventory or ingredient slots
+public void AddItem(GameObject itemPrefab)
+{
+    bool addedToInventory = false;
 
-        // If the inventory is full, log a message
-        Debug.Log("Inventory is full!");
+    // Add to regular inventory slots
+    foreach (Slot slot in slots)
+    {
+        if (slot.currentItem == null)
+        {
+            GameObject item = Instantiate(itemPrefab, slot.transform);
+            item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            slot.currentItem = item;
+            Debug.Log($"Added {item.name} to inventory!");
+            addedToInventory = true;
+            break;
+        }
     }
 
-    // Remove an item with a matching starting name from the inventory
-    public bool RemoveItem(string itemNamePrefix)
+    // If successfully added to regular inventory, add to brewing ingredient slots
+    if (addedToInventory)
     {
-        foreach (Slot slot in slots)
+        foreach (Slot ingredientSlot in ingredientSlots)
+        {
+            if (ingredientSlot.currentItem == null)
+            {
+                GameObject item = Instantiate(itemPrefab, ingredientSlot.transform);
+                item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                ingredientSlot.currentItem = item;
+                Debug.Log($"Added {item.name} to brew ingredients!");
+                break;
+            }
+        }
+    }
+    else
+    {
+        Debug.Log("Inventory slots are full!");
+    }
+}
+
+
+    // Remove an item with a matching name prefix
+    public bool RemoveItem(string itemNamePrefix, bool fromIngredients = false)
+    {
+        List<Slot> targetSlots = fromIngredients ? ingredientSlots : slots;
+
+        foreach (Slot slot in targetSlots)
         {
             if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemNamePrefix))
             {
-                Debug.Log($"Removed item '{slot.currentItem.name}' from inventory!");
-                Destroy(slot.currentItem); // Destroy the item GameObject
-                slot.currentItem = null; // Set the slot's current item to null
-                return true; // Return true to indicate the item was successfully removed
+                Debug.Log($"Removed item '{slot.currentItem.name}' from {(fromIngredients ? "brew ingredients" : "inventory")}!");
+                Destroy(slot.currentItem);
+                slot.currentItem = null;
+                return true;
             }
         }
-        
-        Debug.Log($"No item starting with '{itemNamePrefix}' found in inventory!");
-        return false; // Return false to indicate the item was not found and not removed
+
+        Debug.Log($"No item starting with '{itemNamePrefix}' found in {(fromIngredients ? "brew ingredients" : "inventory")}!");
+        return false;
     }
 }
