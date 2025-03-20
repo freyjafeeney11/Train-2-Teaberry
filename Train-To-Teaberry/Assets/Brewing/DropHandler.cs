@@ -14,7 +14,6 @@ public class DropHandler : MonoBehaviour, IDropHandler
     public Text potionText;           
     public Button brewButton;  
 
-    // Reference to InventoryController
     public InventoryController inventoryController;
 
     private void Start()
@@ -43,6 +42,40 @@ public class DropHandler : MonoBehaviour, IDropHandler
         }
     }
 
+    public void OnDrop(PointerEventData eventData)
+    {
+        GameObject droppedObject = eventData.pointerDrag;
+
+        if (droppedObject != null)
+        {
+            Ingredient ingredient = droppedObject.GetComponent<Ingredient>();
+
+            if (ingredient != null)
+            {
+                string ingredientName = ingredient.ingredientName;
+
+                // Remove ingredient from inventory
+                inventoryController.RemoveItem(ingredientName);
+
+                // Attach it to the cauldron visually
+                droppedObject.transform.SetParent(transform);
+                droppedObject.transform.position = transform.position; // Center on cauldron
+
+                // Add to the ingredient list for brewing
+                if (!ingredients.Contains(ingredientName))
+                {
+                    ingredients.Add(ingredientName);
+                    ingredientObjects.Add(droppedObject);
+                    Debug.Log("Added ingredient: " + ingredientName);
+                }
+            }
+            else
+            {
+                Debug.LogError("Dropped object does not have an Ingredient component.");
+            }
+        }
+    }
+
     public void BrewPotion()
     {
         Debug.Log("Ingredients in cauldron: " + string.Join(", ", ingredients));
@@ -53,28 +86,17 @@ public class DropHandler : MonoBehaviour, IDropHandler
         {
             Debug.Log("You brewed: " + brewedPotion);
 
-            // Remove ingredient GameObjects from the scene
             ClearIngredientObjects();
-
-            // Clear ingredient names from the list
             ingredients.Clear();  
 
-            // Show the potion display
             potionDisplay.SetActive(true);
-
-            // Set the correct sprite for the brewed potion
-            Sprite potionSprite = GetPotionSprite(brewedPotion);
-            potionImage.sprite = potionSprite;
-
-            // Display the potion name
+            potionImage.sprite = GetPotionSprite(brewedPotion);
             potionText.text = "You brewed a " + brewedPotion + "!";
 
-            // Now add the brewed potion to the inventory
             GameObject potionPrefab = GetPotionPrefab(brewedPotion);
             if (potionPrefab != null)
             {
-                Debug.Log("Prefab for brewed potion found: " + potionPrefab.name);
-                inventoryController.AddItem(potionPrefab); // Add potion to inventory
+                inventoryController.AddItem(potionPrefab);
             }
             else
             {
@@ -99,64 +121,14 @@ public class DropHandler : MonoBehaviour, IDropHandler
         ingredientObjects.Clear();  
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        GameObject droppedObject = eventData.pointerDrag;
-
-        if (droppedObject != null)
-        {
-            Ingredient ingredient = droppedObject.GetComponent<Ingredient>();
-
-            if (ingredient != null)
-            {
-                // Temporarily store ingredient but don't add it yet
-                droppedObject.transform.SetParent(transform); // Attach it to the cauldron
-            }
-            else
-            {
-                Debug.LogError("Dropped object does not have an Ingredient component.");
-            }
-        }
-    }
-
-    // Check if an ingredient actually enters the cauldron before adding it to the list
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Ingredient ingredient = other.GetComponent<Ingredient>();
-        if (ingredient != null && !ingredients.Contains(ingredient.ingredientName))
-        {
-            ingredients.Add(ingredient.ingredientName);
-            ingredientObjects.Add(other.gameObject);
-            Debug.Log("Added ingredient: " + ingredient.ingredientName);
-        }
-    }
-
     private Sprite GetPotionSprite(string potionName)
     {
-        switch (potionName)
-        {
-            case "Fart Potion":
-                return Resources.Load<Sprite>("Fart Potion");  
-            case "Health Potion":
-                return Resources.Load<Sprite>("Health Potion");
-            default:
-                return null;  
-        }
+        return Resources.Load<Sprite>($"Sprites/{potionName}");
     }
 
     private GameObject GetPotionPrefab(string potionName)
     {
-        switch (potionName)
-        {
-            case "Fart Potion":
-                Debug.Log("Looking for Fart Potion prefab...");
-                return Resources.Load<GameObject>("PotionPrefabs/FartPotionPrefab");  // Replace with actual path to prefab
-            case "Health Potion":
-                Debug.Log("Looking for Health Potion prefab...");
-                return Resources.Load<GameObject>("PotionPrefabs/HealthPotionPrefab");
-            default:
-                return null;
-        }
+        return Resources.Load<GameObject>($"PotionPrefabs/{potionName}Prefab");
     }
 
     private void ClosePotionDisplay()

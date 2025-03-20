@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5485306623742627961}
   - component: {fileID: -8345472387874549477}
   m_Layer: 5
-  m_Name: Green Mushroom
+  m_Name: Blue Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4717781618098924079, guid: 2beecf3f1257c451c9b9979d0c340a4d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0403beb90a18948438af61b97c45cbf9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7b08e85b3fe4a18b513350e023afea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientName: Green Mushroom
+  ingredientName: Blue Mushroom

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0403beb90a18948438af61b97c45cbf9
+guid: ce0999ec2d69a4771a83d2b9ff0e372c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2524560076252073357
-    second: indigo_milk_cap___0
+      213: 5385140349544948893
+    second: Fart Potion_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: indigo_milk_cap___0
+      name: Fart Potion_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 72
-        height: 61
+        x: 31
+        y: 3
+        width: 186
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d8d432f730a090320800000000000000
-      internalID: 2524560076252073357
+      spriteID: d94ef30cd9cdbba40800000000000000
+      internalID: 5385140349544948893
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      indigo_milk_cap___0: 2524560076252073357
+      Fart Potion_0: 5385140349544948893
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

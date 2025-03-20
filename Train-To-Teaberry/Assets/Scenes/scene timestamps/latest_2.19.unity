@@ -3774,7 +3774,7 @@ SpriteRenderer:
   m_Size: {x: 0.29, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &424393746
@@ -5656,7 +5656,7 @@ SpriteRenderer:
   m_Size: {x: 0.29, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &855034529
@@ -6042,7 +6042,7 @@ SpriteRenderer:
   m_Size: {x: 0.29, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &986970245
@@ -452637,7 +452637,6 @@ GameObject:
   - component: {fileID: 1098475062}
   - component: {fileID: 1098475066}
   - component: {fileID: 1098475065}
-  - component: {fileID: 1098475064}
   m_Layer: 0
   m_Name: YOLKK
   m_TagString: Untagged
@@ -452716,26 +452715,6 @@ Transform:
   - {fileID: 6766514352760066184}
   m_Father: {fileID: 1716272050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1098475064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098475061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99696ac2e52ef4ac79036b6c87ece585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  schedule:
-  - hour: 7
-    minute: 0
-    waypoints:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  movementSpeed: 2
 --- !u!61 &1098475065
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -454430,8 +454409,8 @@ MonoBehaviour:
   contButton: {fileID: 2105818505}
   wordSpeed: 0.05
   playerIsClose: 0
-  potionManager: {fileID: 0}
-  playerInventory: {fileID: 0}
+  potionManager: {fileID: 1824746401}
+  playerInventory: {fileID: 65266686}
 --- !u!1 &1611918463
 GameObject:
   m_ObjectHideFlags: 0
@@ -455536,7 +455515,7 @@ SpriteRenderer:
   m_Size: {x: 0.29, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1949707594
@@ -455816,6 +455795,10 @@ PrefabInstance:
       propertyPath: inventoryController
       value: 
       objectReference: {fileID: 65266686}
+    - target: {fileID: 3183240815751463557, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 147.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4424324905479762900, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -455904,12 +455887,32 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4809288592494056092, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 9c09f5083e01747879e07243d3be5aca, type: 3}
+    - target: {fileID: 6419214397907203444, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 40.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6786466224767906599, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273774442986725362, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -242.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273774442986725362, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -71.27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7563849358485714796, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
+    - {fileID: 719939237571812395, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
+    - {fileID: 8887821386629399947, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
+    - {fileID: 564095562377690152, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4779132827446719141, guid: 0cae2f5720ad54f97a3cc7c53a199afa, type: 3}
@@ -457380,6 +457383,14 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 65266686}
+    - target: {fileID: 2796530679148782239, guid: 5c70176dd3c4c490d90cd9ba408177cc, type: 3}
+      propertyPath: itemPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796530679148782239, guid: 5c70176dd3c4c490d90cd9ba408177cc, type: 3}
+      propertyPath: 'itemPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8092096454872618426, guid: 869bf09b9748b4364811f6ef8b2c79bf, type: 3}
     - target: {fileID: 8933909407134609833, guid: 5c70176dd3c4c490d90cd9ba408177cc, type: 3}
       propertyPath: m_Name
       value: Shop Inventory
@@ -457622,7 +457633,7 @@ PrefabInstance:
       objectReference: {fileID: 1493636070}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.data[0].npcName
@@ -457633,12 +457644,20 @@ PrefabInstance:
       value: Wisehead
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
+      propertyPath: potionRequests.Array.data[2].npcName
+      value: Wisehead
+      objectReference: {fileID: 0}
+    - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.data[0].potionName
       value: Health
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.data[1].potionName
       value: Fart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
+      propertyPath: potionRequests.Array.data[2].potionName
+      value: Green
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
