@@ -13,10 +13,9 @@ public class NPC : MonoBehaviour
     public float wordSpeed;
     public bool playerIsClose;
 
-    // Potion system references
+    // Gifting references
     public PotionRequestManager potionManager;
     public InventoryController playerInventory;
-    public GameObject giftUI; // UI for selecting a potion
 
     private string npcName;
 
@@ -36,8 +35,9 @@ public class NPC : MonoBehaviour
             else
             {
                 dialoguePanel.SetActive(true);
-                DisplayNPCDialogue();
-                StartCoroutine(Typing());
+
+                // Handle potion request or fallback to regular dialogue
+                HandlePotionRequest();
             }
         }
 
@@ -47,15 +47,36 @@ public class NPC : MonoBehaviour
         }
     }
 
-    void DisplayNPCDialogue()
+    void HandlePotionRequest()
     {
-        if (potionManager != null && potionManager.currentRequest != null && potionManager.currentRequest.npcName == npcName)
+        if (potionManager != null && potionManager.currentRequest != null &&
+            potionManager.currentRequest.npcName == npcName)
         {
-            dialogueText.text = $"Hello! I need a {potionManager.currentRequest.potionName}. Can you help?";
+            string requiredPotion = potionManager.currentRequest.potionName;
+
+            // Check if the inventory has the required potion
+            if (playerInventory.HasItem(requiredPotion))
+            {
+                // Remove the potion from inventory
+                playerInventory.RemoveItem(requiredPotion);
+
+                // Mark the request as fulfilled
+                potionManager.SatisfyRequest();
+
+                // NPC response after receiving the correct potion
+                dialogueText.text = $"Thank you KINDLY yass {requiredPotion}!";
+            }
+            else
+            {
+                // NPC response if the potion is not in the inventory
+                dialogueText.text = $"Bitch I need a {requiredPotion}. You dont have it. Anyway..";
+            }
         }
         else
         {
+            // Fallback to regular dialogue
             dialogueText.text = dialogue[index];
+            StartCoroutine(Typing());
         }
     }
 
@@ -90,27 +111,6 @@ public class NPC : MonoBehaviour
         dialogueText.text = "";
         index = 0;
         dialoguePanel.SetActive(false);
-    }
-
-    public void OnGiftButton()
-    {
-        if (potionManager != null && potionManager.currentRequest != null && potionManager.currentRequest.npcName == npcName)
-        {
-            giftUI.SetActive(true); // Open inventory UI for selection
-        }
-    }
-
-    public void GiftPotion(string potionName)
-    {
-        if (potionManager.DeliverPotion(potionName, playerInventory))
-        {
-            dialogueText.text = $"Thank you for the {potionName}!";
-            giftUI.SetActive(false);
-        }
-        else
-        {
-            dialogueText.text = "This isn't what I needed...";
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

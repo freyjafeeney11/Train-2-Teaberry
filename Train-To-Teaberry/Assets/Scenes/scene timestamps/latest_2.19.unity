@@ -4766,6 +4766,14 @@ PrefabInstance:
       propertyPath: dialoguePanel
       value: 
       objectReference: {fileID: 784581900}
+    - target: {fileID: 5274879057276799303, guid: 7ca3528080d9f49058e5a95ad5e8294b, type: 3}
+      propertyPath: potionManager
+      value: 
+      objectReference: {fileID: 1824746401}
+    - target: {fileID: 5274879057276799303, guid: 7ca3528080d9f49058e5a95ad5e8294b, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 65266686}
     - target: {fileID: 7752109971322677331, guid: 7ca3528080d9f49058e5a95ad5e8294b, type: 3}
       propertyPath: m_Name
       value: Wisehead
@@ -5900,7 +5908,6 @@ MonoBehaviour:
   playerIsClose: 0
   potionManager: {fileID: 0}
   playerInventory: {fileID: 0}
-  giftUI: {fileID: 0}
 --- !u!114 &942098104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452346,7 +452353,6 @@ MonoBehaviour:
   playerIsClose: 0
   potionManager: {fileID: 0}
   playerInventory: {fileID: 0}
-  giftUI: {fileID: 0}
 --- !u!61 &1066739423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -452799,7 +452805,6 @@ MonoBehaviour:
   playerIsClose: 0
   potionManager: {fileID: 0}
   playerInventory: {fileID: 0}
-  giftUI: {fileID: 0}
 --- !u!1 &1112587224
 GameObject:
   m_ObjectHideFlags: 0
@@ -454427,7 +454432,6 @@ MonoBehaviour:
   playerIsClose: 0
   potionManager: {fileID: 0}
   playerInventory: {fileID: 0}
-  giftUI: {fileID: 0}
 --- !u!1 &1611918463
 GameObject:
   m_ObjectHideFlags: 0
@@ -457613,14 +457617,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
-      propertyPath: currentRequest.npcName
-      value: def
-      objectReference: {fileID: 0}
-    - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
-      propertyPath: currentRequest.potionName
-      value: def
-      objectReference: {fileID: 0}
-    - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -457634,15 +457630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.data[0].potionName
-      value: Fart
+      value: HealthPotionPrefab(Clone)
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.data[1].potionName
-      value: Health
-      objectReference: {fileID: 0}
-    - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
-      propertyPath: potionRequests.Array.data[1].isCompleted
-      value: 0
+      value: FartPotionPrefab(Clone)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

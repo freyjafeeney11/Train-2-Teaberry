@@ -30,11 +30,14 @@ public class InventoryController : MonoBehaviour
     {
         foreach (Slot slot in slots)
         {
+            // Ensure currentItem is not null before checking its name
             if (slot.currentItem != null && slot.currentItem.name == itemName)
             {
+                Debug.Log($"Item {itemName} found in inventory!");
                 return true;
             }
         }
+        Debug.Log($"Item {itemName} not found in inventory!");
         return false;
     }
 
