@@ -142,6 +142,7 @@ public void OnDrop(PointerEventData eventData)
             ingredients.Add(ingredient.ingredientName);
             ingredientObjects.Add(other.gameObject);
             Debug.Log("Added ingredient: " + ingredient.ingredientName);
+            inventoryController.RemoveItem(ingredient.ingredientName);
         }
     }
 
