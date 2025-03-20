@@ -12,66 +12,75 @@ public class ShopController : MonoBehaviour
     public InventoryController playerInventory; // Reference to player's inventory
     public PlayerStats playerStats; // Reference to PlayerStats for money management
     public int initialStackSize = 3; // Default stack size for each shop slot
-    public int mushroomCost = 10; // Cost of a mushroom
 
     void Start()
     {
-        // Create shop slots dynamically
         for (int i = 0; i < shopSlotCount; i++)
         {
             Slot slot = Instantiate(slotPrefab, shopPanel.transform).GetComponent<Slot>();
             shopSlots.Add(slot);
         }
 
-        // Populate shop slots with items and quantities
+        // Assign different prices to different mushrooms
         for (int i = 0; i < itemPrefabs.Length && i < shopSlots.Count; i++)
         {
-            AddToShop(itemPrefabs[i], i, initialStackSize); // Add 3 items to each slot
+            int price = 10; // Default price
+
+            if (itemPrefabs[i].name.Contains("Green Mushroom")) price = 20;
+            if (itemPrefabs[i].name.Contains("White Mushroom")) price = 30;
+
+            AddToShop(itemPrefabs[i], i, initialStackSize, price);
         }
     }
 
-    // Add an item with a stack size to the shop slot
-    public void AddToShop(GameObject itemPrefab, int index, int quantity)
+
+public void AddToShop(GameObject itemPrefab, int index, int quantity, int price)
+{
+    if (index < shopSlots.Count)
     {
-        if (index < shopSlots.Count)
-        {
-            GameObject item = Instantiate(itemPrefab, shopSlots[index].transform);
-            item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        GameObject item = Instantiate(itemPrefab, shopSlots[index].transform);
+        item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
-            ShopItem shopItem = item.AddComponent<ShopItem>(); // Dynamically add ShopItem script
-            shopItem.shopController = this;
-            shopItem.itemPrefab = itemPrefab;
-            shopItem.quantity = quantity; // Set the initial quantity
-        }
+        ShopItem shopItem = item.AddComponent<ShopItem>(); // Add ShopItem script
+        shopItem.shopController = this;
+        shopItem.itemPrefab = itemPrefab;
+        shopItem.quantity = quantity; // Set the initial quantity
+        shopItem.price = price; // Set the item's price
+
+        Debug.Log($"{itemPrefab.name} added to shop with price: {price}");
     }
+}
+
 
     // Reduce item quantity and remove it from the shop when sold out
-    public void BuyItem(GameObject itemPrefab, ShopItem shopItem)
+public void BuyItem(GameObject itemPrefab, ShopItem shopItem)
+{
+    if (playerInventory != null && shopItem.quantity > 0)
     {
-        if (playerInventory != null && shopItem.quantity > 0)
+        int itemPrice = shopItem.price; // Get the specific price for this item
+
+        if (playerStats != null && playerStats.SpendMoney(itemPrice))
         {
-            if (playerStats != null && playerStats.SpendMoney(mushroomCost))
-            {
-                playerInventory.AddItem(itemPrefab); // Add item to inventory
-                shopItem.quantity--; // Decrease the stack size
+            playerInventory.AddItem(itemPrefab);
+            shopItem.quantity--;
 
-                Debug.Log($"Bought 1 {itemPrefab.name} for {mushroomCost} gold. Remaining: {shopItem.quantity}");
+            Debug.Log($"Bought 1 {itemPrefab.name} for {itemPrice} gold. Remaining: {shopItem.quantity}");
 
-                // If the stack is empty, remove the item from the shop
-                if (shopItem.quantity <= 0)
-                {
-                    Destroy(shopItem.gameObject); // Remove from the shop UI
-                    Debug.Log($"{itemPrefab.name} is sold out!");
-                }
-            }
-            else
+            if (shopItem.quantity <= 0)
             {
-                Debug.LogWarning("Not enough money to buy this item!");
+                Destroy(shopItem.gameObject);
+                Debug.Log($"{itemPrefab.name} is sold out!");
             }
         }
         else
         {
-            Debug.LogWarning("Item cannot be purchased. Either the inventory is missing or the stack is empty.");
+            Debug.LogWarning("Not enough money to buy this item!");
         }
     }
+    else
+    {
+        Debug.LogWarning("Item cannot be purchased. Either the inventory is missing or the stack is empty.");
+    }
+}
+
 }
