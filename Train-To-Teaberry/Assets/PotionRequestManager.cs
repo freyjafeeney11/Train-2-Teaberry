@@ -28,7 +28,7 @@ public class PotionRequestManager : MonoBehaviour
 
     void GiveReward()
     {
-        Debug.Log("Player received gold or XP!");
+        Debug.Log("Player received gold!");
         moneySystem.AddMoney(50);
         // Example: playerStats.AddMoney(50);
     }

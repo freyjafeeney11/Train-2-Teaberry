@@ -38,6 +38,13 @@ public class MailboxRequests : MonoBehaviour
             Debug.Log("Player is close, receiving potion request.");
             ReceivePotionRequest();
         }
+
+        // Check if the current potion request is completed
+        if (potionRequestManager != null && potionRequestManager.currentRequest != null && potionRequestManager.currentRequest.isCompleted)
+        {
+            Debug.Log("Potion request completed, updating UI.");
+            potionRequestText.text = "No active requests.";
+        }
     }
 
     // Simple check to see if the player is within a certain range of the mailbox
@@ -52,35 +59,34 @@ public class MailboxRequests : MonoBehaviour
     }
 
     // Method to trigger receiving a potion request
-private void ReceivePotionRequest()
-{
-    if (potionRequestManager == null)
+    private void ReceivePotionRequest()
     {
-        Debug.LogError("PotionRequestManager reference is missing!");
-        return;
-    }
-
-    // Ensure we have an active potion request
-    potionRequestManager.GenerateNewRequest(); // Make sure this is actually called and executed
-    Debug.Log("called gen req in mailbox req");
-    if (potionRequestManager.currentRequest != null)
-    {
-        Debug.Log("New potion request received: " + potionRequestManager.currentRequest.potionName);
-
-        // Update the Guide Tab UI with the new potion request
-        if (potionRequestText != null)
+        if (potionRequestManager == null)
         {
-            potionRequestText.text = potionRequestManager.currentRequest.npcName + " wants a " + potionRequestManager.currentRequest.potionName;
+            Debug.LogError("PotionRequestManager reference is missing!");
+            return;
+        }
+
+        // Ensure we have an active potion request
+        potionRequestManager.GenerateNewRequest(); // Make sure this is actually called and executed
+        Debug.Log("called gen req in mailbox req");
+        if (potionRequestManager.currentRequest != null)
+        {
+            Debug.Log("New potion request received: " + potionRequestManager.currentRequest.potionName);
+
+            // Update the Guide Tab UI with the new potion request
+            if (potionRequestText != null)
+            {
+                potionRequestText.text = potionRequestManager.currentRequest.npcName + " wants a " + potionRequestManager.currentRequest.potionName;
+            }
+            else
+            {
+                Debug.LogError("PotionRequestText component is missing!");
+            }
         }
         else
         {
-            Debug.LogError("PotionRequestText component is missing!");
+            Debug.Log("No available potion requests.");
         }
     }
-    else
-    {
-        Debug.Log("No available potion requests.");
-    }
-}
-
 }
