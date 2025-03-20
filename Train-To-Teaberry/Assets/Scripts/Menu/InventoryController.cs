@@ -59,20 +59,22 @@ public class InventoryController : MonoBehaviour
     }
 
     // Remove an item by name from the inventory
-    public void RemoveItem(string itemName)
+    public bool RemoveItem(string itemName)
+{
+    foreach (Slot slot in slots)
     {
-        foreach (Slot slot in slots)
+        if (slot.currentItem != null && slot.currentItem.name == itemName)
         {
-            if (slot.currentItem != null && slot.currentItem.name == itemName)
-            {
-                Destroy(slot.currentItem); // Destroy the item GameObject
-                slot.currentItem = null; // Set the slot's current item to null
-                Debug.Log($"Removed {itemName} from inventory!");
-                return; // Exit after removing the item
-            }
+            Destroy(slot.currentItem); // Destroy the item GameObject
+            slot.currentItem = null; // Set the slot's current item to null
+            Debug.Log($"Removed {itemName} from inventory!");
+            return true; // Return true to indicate the item was successfully removed
         }
-
-        // If the item is not found, log a message
-        Debug.Log($"{itemName} not found in inventory!");
     }
+
+    // If the item is not found, log a message and return false
+    Debug.Log($"{itemName} not found in inventory!");
+    return false; // Return false to indicate the item was not found and not removed
+}
+
 }

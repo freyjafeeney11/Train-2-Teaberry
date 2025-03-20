@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class NPC : MonoBehaviour
 {
     public GameObject dialoguePanel;
@@ -13,69 +12,121 @@ public class NPC : MonoBehaviour
     private int index;
     public float wordSpeed;
     public bool playerIsClose;
-    // Start is called before the first frame update
 
-    // Update is called once per frame
+    // Potion system references
+    public PotionRequestManager potionManager;
+    public InventoryController playerInventory;
+    public GameObject giftUI; // UI for selecting a potion
+
+    private string npcName;
+
+    void Start()
+    {
+        npcName = gameObject.name; // Assign NPC's name dynamically
+    }
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && playerIsClose) {
-            if(dialoguePanel.activeInHierarchy) {
+        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
+        {
+            if (dialoguePanel.activeInHierarchy)
+            {
                 zeroText();
             }
-            else {
+            else
+            {
                 dialoguePanel.SetActive(true);
+                DisplayNPCDialogue();
                 StartCoroutine(Typing());
-                Debug.Log("Displaying dialogue panel");
             }
         }
+
         if (dialogueText.text == dialogue[index])
         {
             contButton.SetActive(true);
-            Debug.Log("button not clicked");
         }
-
     }
 
-    IEnumerator Typing() {
-        foreach (char letter in dialogue[index].ToCharArray()){
+    void DisplayNPCDialogue()
+    {
+        if (potionManager != null && potionManager.currentRequest != null && potionManager.currentRequest.npcName == npcName)
+        {
+            dialogueText.text = $"Hello! I need a {potionManager.currentRequest.potionName}. Can you help?";
+        }
+        else
+        {
+            dialogueText.text = dialogue[index];
+        }
+    }
+
+    IEnumerator Typing()
+    {
+        dialogueText.text = "";
+        foreach (char letter in dialogue[index].ToCharArray())
+        {
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
     }
 
-    public void NextLine() {
-
-        Debug.Log("button clicked");
+    public void NextLine()
+    {
         contButton.SetActive(false);
 
-        if(index < dialogue.Length - 1) {
+        if (index < dialogue.Length - 1)
+        {
             index++;
             dialogueText.text = "";
             StartCoroutine(Typing());
         }
-        else {
+        else
+        {
             zeroText();
         }
     }
 
-    public void zeroText() {
+    public void zeroText()
+    {
         dialogueText.text = "";
         index = 0;
         dialoguePanel.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player")) {
+    public void OnGiftButton()
+    {
+        if (potionManager != null && potionManager.currentRequest != null && potionManager.currentRequest.npcName == npcName)
+        {
+            giftUI.SetActive(true); // Open inventory UI for selection
+        }
+    }
+
+    public void GiftPotion(string potionName)
+    {
+        if (potionManager.DeliverPotion(potionName, playerInventory))
+        {
+            dialogueText.text = $"Thank you for the {potionName}!";
+            giftUI.SetActive(false);
+        }
+        else
+        {
+            dialogueText.text = "This isn't what I needed...";
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
             playerIsClose = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.CompareTag("Player")) {
-            playerIsClose = false; 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerIsClose = false;
             zeroText();
         }
     }
-
-
 }

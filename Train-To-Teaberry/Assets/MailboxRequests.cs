@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class MailboxRequests : MonoBehaviour
 {
     public PotionRequestManager potionRequestManager; // Reference to the PotionRequestManager
-    public KeyCode interactKey = KeyCode.R;            // Key to interact with the mailbox (e.g., 'E' key)
+    public KeyCode interactKey = KeyCode.R;            // Key to interact with the mailbox (e.g., 'R' key)
 
     public Text potionRequestText; // Reference to the Text component in the Guide Tab
 
@@ -24,6 +24,10 @@ public class MailboxRequests : MonoBehaviour
         {
             potionRequestText.text = "No requests yet.";
         }
+        else
+        {
+            Debug.LogError("PotionRequestText component not assigned!");
+        }
     }
 
     private void Update()
@@ -31,7 +35,7 @@ public class MailboxRequests : MonoBehaviour
         // Check if the player is close enough and presses the interact key
         if (IsPlayerInRange() && Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Player is close");
+            Debug.Log("Player is close, receiving potion request.");
             ReceivePotionRequest();
         }
     }
@@ -48,20 +52,35 @@ public class MailboxRequests : MonoBehaviour
     }
 
     // Method to trigger receiving a potion request
-    private void ReceivePotionRequest()
+private void ReceivePotionRequest()
+{
+    if (potionRequestManager == null)
     {
-        // Get a random potion request from the PotionRequestManager
-        string newPotionRequest = potionRequestManager.GetRandomPotionRequest();
+        Debug.LogError("PotionRequestManager reference is missing!");
+        return;
+    }
 
-        if (!string.IsNullOrEmpty(newPotionRequest))
+    // Ensure we have an active potion request
+    potionRequestManager.GenerateNewRequest(); // Make sure this is actually called and executed
+    Debug.Log("called gen req in mailbox req");
+    if (potionRequestManager.currentRequest != null)
+    {
+        Debug.Log("New potion request received: " + potionRequestManager.currentRequest.potionName);
+
+        // Update the Guide Tab UI with the new potion request
+        if (potionRequestText != null)
         {
-            Debug.Log("New potion request received: " + newPotionRequest);
-
-            // Update the Guide Tab UI with the new potion request
-            if (potionRequestText != null)
-            {
-                potionRequestText.text = "Potion Request: " + newPotionRequest;
-            }
+            potionRequestText.text = potionRequestManager.currentRequest.npcName + " wants a " + potionRequestManager.currentRequest.potionName;
+        }
+        else
+        {
+            Debug.LogError("PotionRequestText component is missing!");
         }
     }
+    else
+    {
+        Debug.Log("No available potion requests.");
+    }
+}
+
 }
