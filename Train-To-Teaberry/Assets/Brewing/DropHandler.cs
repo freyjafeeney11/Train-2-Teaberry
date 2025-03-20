@@ -137,7 +137,7 @@ public void OnDrop(PointerEventData eventData)
     private void OnTriggerEnter2D(Collider2D other)
     {
         Ingredient ingredient = other.GetComponent<Ingredient>();
-        if (ingredient != null && !ingredients.Contains(ingredient.ingredientName))
+        if (ingredient != null)
         {
             ingredients.Add(ingredient.ingredientName);
             ingredientObjects.Add(other.gameObject);
