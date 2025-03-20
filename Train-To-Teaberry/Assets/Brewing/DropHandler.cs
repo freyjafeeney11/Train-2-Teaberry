@@ -99,25 +99,39 @@ public class DropHandler : MonoBehaviour, IDropHandler
         ingredientObjects.Clear();  
     }
 
-    public void OnDrop(PointerEventData eventData)
+public void OnDrop(PointerEventData eventData)
+{
+    GameObject droppedObject = eventData.pointerDrag;
+
+    if (droppedObject != null)
     {
-        GameObject droppedObject = eventData.pointerDrag;
+        Ingredient ingredient = droppedObject.GetComponent<Ingredient>();
 
-        if (droppedObject != null)
+        if (ingredient != null)
         {
-            Ingredient ingredient = droppedObject.GetComponent<Ingredient>();
+            droppedObject.transform.SetParent(transform); // Attach it to the cauldron
 
-            if (ingredient != null)
+            // Remove the ingredient from the inventory by passing its name
+            bool removed = inventoryController.RemoveItem(ingredient.ingredientName);  
+
+            if (removed)
             {
-                // Temporarily store ingredient but don't add it yet
-                droppedObject.transform.SetParent(transform); // Attach it to the cauldron
+                Debug.Log("Removed " + ingredient.ingredientName + " from inventory.");
             }
             else
             {
-                Debug.LogError("Dropped object does not have an Ingredient component.");
+                Debug.LogWarning("Failed to remove " + ingredient.ingredientName + " from inventory.");
             }
         }
+        else
+        {
+            Debug.LogError("Dropped object does not have an Ingredient component.");
+        }
     }
+}
+
+
+
 
     // Check if an ingredient actually enters the cauldron before adding it to the list
     private void OnTriggerEnter2D(Collider2D other)
@@ -139,8 +153,6 @@ public class DropHandler : MonoBehaviour, IDropHandler
                 return Resources.Load<Sprite>("Fart Potion");  
             case "Health Potion":
                 return Resources.Load<Sprite>("Health Potion");
-            case "Mushroom Potion":
-                return Resources.Load<Sprite>("Mushroom Potion");
             default:
                 return null;  
         }
@@ -156,9 +168,6 @@ public class DropHandler : MonoBehaviour, IDropHandler
             case "Health Potion":
                 Debug.Log("Looking for Health Potion prefab...");
                 return Resources.Load<GameObject>("PotionPrefabs/HealthPotionPrefab");
-            case "Mushroom Potion":
-                Debug.Log("Looking for Mushroom Potion prefab...");
-                return Resources.Load<GameObject>("PotionPrefabs/Mushroom Potion");
             default:
                 return null;
         }

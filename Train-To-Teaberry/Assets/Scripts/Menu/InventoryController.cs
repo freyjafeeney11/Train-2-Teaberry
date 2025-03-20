@@ -87,22 +87,39 @@ public void AddItem(GameObject itemPrefab)
 
 
     // Remove an item with a matching name prefix
-    public bool RemoveItem(string itemNamePrefix, bool fromIngredients = false)
+public bool RemoveItem(string itemNamePrefix)
+{
+    bool removedFromIngredients = false;
+    bool removedFromInventory = false;
+
+    // Remove from brew ingredient slots
+    foreach (Slot slot in ingredientSlots)
     {
-        List<Slot> targetSlots = fromIngredients ? ingredientSlots : slots;
-
-        foreach (Slot slot in targetSlots)
+        if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemNamePrefix))
         {
-            if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemNamePrefix))
-            {
-                Debug.Log($"Removed item '{slot.currentItem.name}' from {(fromIngredients ? "brew ingredients" : "inventory")}!");
-                Destroy(slot.currentItem);
-                slot.currentItem = null;
-                return true;
-            }
+            Debug.Log($"Removed '{slot.currentItem.name}' from brew ingredients!");
+            Destroy(slot.currentItem);
+            slot.currentItem = null;
+            removedFromIngredients = true;
+            break;  // Stop after removing one match
         }
-
-        Debug.Log($"No item starting with '{itemNamePrefix}' found in {(fromIngredients ? "brew ingredients" : "inventory")}!");
-        return false;
     }
+
+    // Remove from regular inventory slots
+    foreach (Slot slot in slots)
+    {
+        if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemNamePrefix))
+        {
+            Debug.Log($"Removed '{slot.currentItem.name}' from inventory!");
+            Destroy(slot.currentItem);
+            slot.currentItem = null;
+            removedFromInventory = true;
+            break;  // Stop after removing one match
+        }
+    }
+
+    // Return true if the item was removed from either inventory
+    return removedFromIngredients || removedFromInventory;
+}
+
 }
