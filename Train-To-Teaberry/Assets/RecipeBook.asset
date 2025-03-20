@@ -21,3 +21,7 @@ MonoBehaviour:
     ingredients:
     - Egg
     - Apple
+  - potionName: Mushroom Potion
+    ingredients:
+    - Blue Mushroom
+    - Apple

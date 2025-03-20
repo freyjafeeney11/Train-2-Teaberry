@@ -139,6 +139,8 @@ public class DropHandler : MonoBehaviour, IDropHandler
                 return Resources.Load<Sprite>("Fart Potion");  
             case "Health Potion":
                 return Resources.Load<Sprite>("Health Potion");
+            case "Mushroom Potion":
+                return Resources.Load<Sprite>("Mushroom Potion");
             default:
                 return null;  
         }
@@ -154,6 +156,9 @@ public class DropHandler : MonoBehaviour, IDropHandler
             case "Health Potion":
                 Debug.Log("Looking for Health Potion prefab...");
                 return Resources.Load<GameObject>("PotionPrefabs/HealthPotionPrefab");
+            case "Mushroom Potion":
+                Debug.Log("Looking for Mushroom Potion prefab...");
+                return Resources.Load<GameObject>("PotionPrefabs/Mushroom Potion");
             default:
                 return null;
         }

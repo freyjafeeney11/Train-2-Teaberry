@@ -457380,6 +457380,14 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 65266686}
+    - target: {fileID: 2796530679148782239, guid: 5c70176dd3c4c490d90cd9ba408177cc, type: 3}
+      propertyPath: itemPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796530679148782239, guid: 5c70176dd3c4c490d90cd9ba408177cc, type: 3}
+      propertyPath: 'itemPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8092096454872618426, guid: 47ec71179bbcf4480bcb600d151da8c3, type: 3}
     - target: {fileID: 8933909407134609833, guid: 5c70176dd3c4c490d90cd9ba408177cc, type: 3}
       propertyPath: m_Name
       value: Shop Inventory
