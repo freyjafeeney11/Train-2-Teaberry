@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PotionRequestManager : MonoBehaviour
 {
+    public PlayerStats moneySystem; // Reference to PlayerStats for money management
+
     [System.Serializable]
     public class PotionRequest
     {
@@ -21,11 +23,13 @@ public class PotionRequestManager : MonoBehaviour
     }
     public void SatisfyRequest() {
         currentRequest.isCompleted = true;
+        GiveReward();
     }
 
     void GiveReward()
     {
         Debug.Log("Player received gold or XP!");
+        moneySystem.AddMoney(50);
         // Example: playerStats.AddMoney(50);
     }
 }

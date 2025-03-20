@@ -5906,8 +5906,8 @@ MonoBehaviour:
   contButton: {fileID: 822091425}
   wordSpeed: 0.05
   playerIsClose: 0
-  potionManager: {fileID: 0}
-  playerInventory: {fileID: 0}
+  potionManager: {fileID: 1824746401}
+  playerInventory: {fileID: 65266686}
 --- !u!114 &942098104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457617,6 +457617,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
+      propertyPath: moneySystem
+      value: 
+      objectReference: {fileID: 1493636070}
+    - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -457634,7 +457638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7129645597600086832, guid: ed43cd389f66640b09bd0f046db36af3, type: 3}
       propertyPath: potionRequests.Array.data[1].potionName
-      value: FartPotionPrefab(Clone)
+      value: Fart
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

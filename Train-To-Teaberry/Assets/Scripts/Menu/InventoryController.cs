@@ -20,25 +20,25 @@ public class InventoryController : MonoBehaviour
             if (i < itemPrefabs.Length)
             {
                 // Add starting items (only as long as itemPrefabs has entries)
-                //AddItem(Instantiate(itemPrefabs[i]));
+                // AddItem(Instantiate(itemPrefabs[i]));
             }
         }
     }
 
-    // Check if an item is already in the inventory by name
-public bool HasItem(string itemName)
-{
-    foreach (Slot slot in slots)
+    // Check if an item with a matching starting name is in the inventory
+    public bool HasItem(string itemNamePrefix)
     {
-        if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemName))
+        foreach (Slot slot in slots)
         {
-            Debug.Log($"Item {itemName} found in inventory!");
-            return true;
+            if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemNamePrefix))
+            {
+                Debug.Log($"Item starting with '{itemNamePrefix}' found in inventory!");
+                return true;
+            }
         }
+        Debug.Log($"Item starting with '{itemNamePrefix}' not found in inventory!");
+        return false;
     }
-    Debug.Log($"Item {itemName} not found in inventory!");
-    return false;
-}
 
     // Add an item to the first available slot in the inventory
     public void AddItem(GameObject itemPrefab)
@@ -60,23 +60,21 @@ public bool HasItem(string itemName)
         Debug.Log("Inventory is full!");
     }
 
-    // Remove an item by name from the inventory
-    public bool RemoveItem(string itemName)
-{
-    foreach (Slot slot in slots)
+    // Remove an item with a matching starting name from the inventory
+    public bool RemoveItem(string itemNamePrefix)
     {
-        if (slot.currentItem != null && slot.currentItem.name == itemName)
+        foreach (Slot slot in slots)
         {
-            Destroy(slot.currentItem); // Destroy the item GameObject
-            slot.currentItem = null; // Set the slot's current item to null
-            Debug.Log($"Removed {itemName} from inventory!");
-            return true; // Return true to indicate the item was successfully removed
+            if (slot.currentItem != null && slot.currentItem.name.StartsWith(itemNamePrefix))
+            {
+                Debug.Log($"Removed item '{slot.currentItem.name}' from inventory!");
+                Destroy(slot.currentItem); // Destroy the item GameObject
+                slot.currentItem = null; // Set the slot's current item to null
+                return true; // Return true to indicate the item was successfully removed
+            }
         }
+        
+        Debug.Log($"No item starting with '{itemNamePrefix}' found in inventory!");
+        return false; // Return false to indicate the item was not found and not removed
     }
-
-    // If the item is not found, log a message and return false
-    Debug.Log($"{itemName} not found in inventory!");
-    return false; // Return false to indicate the item was not found and not removed
-}
-
 }
