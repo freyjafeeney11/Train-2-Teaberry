@@ -3,13 +3,14 @@ using System.Collections.Generic;
 
 public class ShopController : MonoBehaviour
 {
-    public GameObject shopPanel; // The panel where shop items will be displayed
-    public GameObject slotPrefab; // The prefab used for each shop slot
-    public int shopSlotCount = 10; // Fixed number of slots in the shop
-    public GameObject[] itemPrefabs; // Predefined items for sale
-    private List<Slot> shopSlots = new List<Slot>(); // List to store shop slots
+    public GameObject shopPanel; // Panel for shop items
+    public GameObject slotPrefab; // Prefab for shop slots
+    public int shopSlotCount = 10; // Number of shop slots
+    public GameObject[] itemPrefabs; // Item prefabs available for sale
+    private List<Slot> shopSlots = new List<Slot>(); // List of shop slots
 
     public InventoryController playerInventory; // Reference to player's inventory
+    public int initialStackSize = 3; // Default stack size for each shop slot
 
     void Start()
     {
@@ -20,38 +21,48 @@ public class ShopController : MonoBehaviour
             shopSlots.Add(slot);
         }
 
-        // Populate shop with items
+        // Populate shop slots with items and quantities
         for (int i = 0; i < itemPrefabs.Length && i < shopSlots.Count; i++)
         {
-            AddToShop(itemPrefabs[i], i);
+            AddToShop(itemPrefabs[i], i, initialStackSize); // Add 3 items to each slot
         }
     }
 
-    // Add an item to the shop slot
-    public void AddToShop(GameObject itemPrefab, int index)
+    // Add an item with a stack size to the shop slot
+    public void AddToShop(GameObject itemPrefab, int index, int quantity)
     {
         if (index < shopSlots.Count)
         {
             GameObject item = Instantiate(itemPrefab, shopSlots[index].transform);
             item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
-            ShopItem shopItem = item.AddComponent<ShopItem>(); // Dynamically attach ShopItem
+            ShopItem shopItem = item.AddComponent<ShopItem>(); // Dynamically add ShopItem script
             shopItem.shopController = this;
-            shopItem.itemPrefab = itemPrefab; // Link the item prefab
+            shopItem.itemPrefab = itemPrefab;
+            shopItem.quantity = quantity; // Set the initial quantity
         }
     }
 
-    // Add an item to the player's inventory
-    public void AddToInventory(GameObject itemPrefab)
+    // Reduce item quantity and remove it from the shop when sold out
+    public void BuyItem(GameObject itemPrefab, ShopItem shopItem)
     {
-        if (playerInventory != null)
+        if (playerInventory != null && shopItem.quantity > 0)
         {
-            playerInventory.AddItem(itemPrefab);
-            Debug.Log($"Added {itemPrefab.name} to inventory!");
+            playerInventory.AddItem(itemPrefab); // Add item to inventory
+            shopItem.quantity--; // Decrease the stack size
+
+            Debug.Log($"Bought 1 {itemPrefab.name}. Remaining: {shopItem.quantity}");
+
+            // If the stack is empty, remove the item from the shop
+            if (shopItem.quantity <= 0)
+            {
+                Destroy(shopItem.gameObject); // Remove from the shop UI
+                Debug.Log($"{itemPrefab.name} is sold out!");
+            }
         }
         else
         {
-            Debug.LogError("Player inventory not assigned to ShopController!");
+            Debug.LogWarning("Item cannot be purchased. Either the inventory is missing or the stack is empty.");
         }
     }
 }
