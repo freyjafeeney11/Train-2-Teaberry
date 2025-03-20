@@ -10,7 +10,9 @@ public class ShopController : MonoBehaviour
     private List<Slot> shopSlots = new List<Slot>(); // List of shop slots
 
     public InventoryController playerInventory; // Reference to player's inventory
+    public PlayerStats playerStats; // Reference to PlayerStats for money management
     public int initialStackSize = 3; // Default stack size for each shop slot
+    public int mushroomCost = 10; // Cost of a mushroom
 
     void Start()
     {
@@ -48,16 +50,23 @@ public class ShopController : MonoBehaviour
     {
         if (playerInventory != null && shopItem.quantity > 0)
         {
-            playerInventory.AddItem(itemPrefab); // Add item to inventory
-            shopItem.quantity--; // Decrease the stack size
-
-            Debug.Log($"Bought 1 {itemPrefab.name}. Remaining: {shopItem.quantity}");
-
-            // If the stack is empty, remove the item from the shop
-            if (shopItem.quantity <= 0)
+            if (playerStats != null && playerStats.SpendMoney(mushroomCost))
             {
-                Destroy(shopItem.gameObject); // Remove from the shop UI
-                Debug.Log($"{itemPrefab.name} is sold out!");
+                playerInventory.AddItem(itemPrefab); // Add item to inventory
+                shopItem.quantity--; // Decrease the stack size
+
+                Debug.Log($"Bought 1 {itemPrefab.name} for {mushroomCost} gold. Remaining: {shopItem.quantity}");
+
+                // If the stack is empty, remove the item from the shop
+                if (shopItem.quantity <= 0)
+                {
+                    Destroy(shopItem.gameObject); // Remove from the shop UI
+                    Debug.Log($"{itemPrefab.name} is sold out!");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Not enough money to buy this item!");
             }
         }
         else
