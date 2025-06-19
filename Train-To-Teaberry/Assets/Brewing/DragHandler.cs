@@ -1,57 +1,31 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIInventoryDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public GameObject worldIngredientPrefab; // assign in inspector
-    public RectTransform inventoryPanel;     // assign in inspector
-
-    private Camera mainCamera;
-    private GameObject spawnedWorldObject;
-    private bool draggedOut = false;
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
 
     private void Awake()
     {
-        mainCamera = Camera.main;
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        draggedOut = false;
+        canvasGroup.alpha = 0.6f; // Make the ingredient semi-transparent
+        canvasGroup.blocksRaycasts = false; // Allow raycasts to pass through
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!draggedOut && !RectTransformUtility.RectangleContainsScreenPoint(inventoryPanel, eventData.position))
-        {
-            // Drag has exited the UI panel — spawn world object
-            Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
-            worldPos.z = 0;
-
-            spawnedWorldObject = Instantiate(worldIngredientPrefab, worldPos, Quaternion.identity);
-            var rb = spawnedWorldObject.GetComponent<Rigidbody2D>();
-            if (rb) rb.isKinematic = true;
-
-            draggedOut = true;
-        }
-
-        if (draggedOut && spawnedWorldObject != null)
-        {
-            Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
-            worldPos.z = 0;
-            spawnedWorldObject.transform.position = worldPos;
-        }
+        rectTransform.anchoredPosition += eventData.delta / transform.root.localScale.x; // Dragging logic
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (draggedOut && spawnedWorldObject != null)
-        {
-            var rb = spawnedWorldObject.GetComponent<Rigidbody2D>();
-            if (rb) rb.isKinematic = false;
-
-            var col = spawnedWorldObject.GetComponent<Collider2D>();
-            if (col) col.enabled = true;
-        }
+        canvasGroup.alpha = 1f; // Reset transparency
+        canvasGroup.blocksRaycasts = true; // Block raycasts again
     }
 }

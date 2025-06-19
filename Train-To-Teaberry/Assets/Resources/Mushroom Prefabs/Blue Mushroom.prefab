@@ -105,8 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d053fb1038b5e430fb6dbd4be39d79d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldPrefab: {fileID: 8092096454872618426, guid: e4a12b0cfde934b95960662d0cb2e7b3, type: 3}
-  inventoryPanel: {fileID: 7931283643697770236, guid: 5c8ab4c097bf8439ebb7955ba326f028, type: 3}
 --- !u!61 &5485306623742627961
 BoxCollider2D:
   m_ObjectHideFlags: 0
