@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Cauldron
+  - NPC
+  - Taller than player
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Taller than player
   - 
   - 
   - 
