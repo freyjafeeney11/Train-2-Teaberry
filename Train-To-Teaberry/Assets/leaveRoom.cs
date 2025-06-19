@@ -1,40 +1,56 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LeaveRoom : MonoBehaviour
 {
-    public Transform exitSpawn; // Drag the spawn point for the new room in the Inspector
-    private bool playerIsClose = false; // Tracks if the player is in range
-    private GameObject player; // Reference to the player object
+    public Transform exitSpawn; // New room spawn point
+    public MoveRoomTransition screenFader; // Assign in Inspector
+
+    private bool playerIsClose = false;
+    private GameObject player;
 
     void Update()
     {
-        // Check if the player is close and the 'E' key is pressed
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose && player != null)
         {
-            player.transform.position = exitSpawn.position; // Move the player to the new spawn point
-            Debug.Log("Left room");
+            // Start the fade + teleport coroutine
+            StartCoroutine(FadeAndTeleport());
         }
     }
 
+private IEnumerator FadeAndTeleport()
+{
+    // Fade to black
+    screenFader.FadeToBlack(null);
+
+    // Wait for the fade to complete
+    yield return new WaitForSeconds(screenFader.fadeDuration);
+
+    // (Teleport player or move camera here)
+    player.transform.position = exitSpawn.position;
+
+    // WAIT extra time here to keep screen black longer
+    yield return new WaitForSeconds(1f); // <-- add this line, adjust seconds as you like
+
+    // Fade back in
+    screenFader.FadeFromBlack(null);
+}
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the colliding object is tagged as "Player"
         if (other.CompareTag("Player"))
         {
-            playerIsClose = true; // Player is within the trigger
-            player = other.gameObject; // Cache the player reference
+            playerIsClose = true;
+            player = other.gameObject;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Check if the exiting object is tagged as "Player"
         if (other.CompareTag("Player"))
         {
-            playerIsClose = false; // Player left the trigger area
-            player = null; // Clear the player reference
+            playerIsClose = false;
+            player = null;
         }
     }
 }
